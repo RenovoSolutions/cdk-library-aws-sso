@@ -22,7 +22,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           types: |-
+            chore
+            docs
             feat
             fix
-            chore
+            ci
+            refactor
+            test
           requireScope: false
