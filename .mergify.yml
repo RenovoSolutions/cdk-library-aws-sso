@@ -7,7 +7,21 @@ queue_rules:
       - -label~=(do-not-merge)
       - status-success=build
       - status-success=package-js
+      - status-success=package-python
+      - status-success=package-dotnet
 pull_request_rules:
+  - name: Automatically approve dependency upgrade PRs if they pass build
+    actions:
+      review:
+        type: APPROVE
+        message: Automatically approved dependency upgrade PR
+    conditions:
+      - label=auto-approve
+      - label=deps-upgrade
+      - -label~=(do-not-merge)
+      - status-success=build
+      - author=github-actions[bot]
+      - 'title="chore(deps): upgrade dependencies"'
   - name: Automatic merge on approval and successful build
     actions:
       delete_head_branch: {}
@@ -23,3 +37,5 @@ pull_request_rules:
       - -label~=(do-not-merge)
       - status-success=build
       - status-success=package-js
+      - status-success=package-python
+      - status-success=package-dotnet
