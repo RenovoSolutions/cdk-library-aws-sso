@@ -46,7 +46,6 @@ abstract class PermissionSetBase extends Resource implements IPermissionSet {
 
   public grant(principal: PrincipalProperty, targetId: string): Assignment {
     return new Assignment(this, 'Assignment', {
-      ssoInstanceArn: this.ssoInstanceArn,
       permissionSet: this,
       principal: principal,
       targetId,

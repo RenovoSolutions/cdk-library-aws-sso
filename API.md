@@ -510,7 +510,6 @@ const assignmentProps: AssignmentProps = { ... }
 | --- | --- | --- |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.permissionSet">permissionSet</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet">IPermissionSet</a></code> | The permission set to assign to the principal. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.principal">principal</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a></code> | The principal to assign the permission set to. |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.ssoInstanceArn">ssoInstanceArn</a></code> | <code>string</code> | The ARN of the AWS SSO instance. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.targetId">targetId</a></code> | <code>string</code> | The target id the permission set will be assigned to. |
 
 ---
@@ -536,18 +535,6 @@ public readonly principal: PrincipalProperty;
 - *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a>
 
 The principal to assign the permission set to.
-
----
-
-##### `ssoInstanceArn`<sup>Required</sup> <a name="ssoInstanceArn" id="@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.ssoInstanceArn"></a>
-
-```typescript
-public readonly ssoInstanceArn: string;
-```
-
-- *Type:* string
-
-The ARN of the AWS SSO instance.
 
 ---
 

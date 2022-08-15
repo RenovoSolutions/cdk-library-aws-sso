@@ -35,11 +35,6 @@ export interface AssignmentAttributes {}
  */
 export interface AssignmentProps {
   /**
-   * The ARN of the AWS SSO instance
-   */
-  readonly ssoInstanceArn: string;
-
-  /**
    * The permission set to assign to the principal
    */
   readonly permissionSet: IPermissionSet;
@@ -75,7 +70,7 @@ export class Assignment extends AssignmentBase {
     validatePermissionSetArn(props.permissionSet.permissionSetArn);
 
     new sso.CfnAssignment(this, 'assignment', {
-      instanceArn: props.ssoInstanceArn,
+      instanceArn: props.permissionSet.ssoInstanceArn,
       permissionSetArn: props.permissionSet.permissionSetArn,
       principalId: props.principal.principalId,
       principalType: props.principal.principalType,
