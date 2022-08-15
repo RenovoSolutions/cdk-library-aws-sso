@@ -72,7 +72,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     dotNetNamespace: 'renovosolutions',
     packageId: 'Renovo.AWSCDK.AWSSSO',
   },
-  workflowNodeVersion: '14.17.0',
   gitignore: ['**/__pycache__/**'],
 });
 
