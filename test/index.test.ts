@@ -48,7 +48,6 @@ test('Snapshot', () => {
       principalType: PrincipalTypes.GROUP,
     },
     '124567890123456',
-    'arn:aws:sso:::instance/ssoins-1234567891234567',
   );
 
   expect(Template.fromStack(stack)).toMatchSnapshot();

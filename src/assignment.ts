@@ -6,6 +6,7 @@ import {
 import { Construct } from 'constructs';
 import { IPermissionSet } from './permissionset';
 import { PrincipalProperty } from './principal';
+import { validatePermissionSetArn } from './private/permissionset-common';
 import { validatePrincipal } from './private/principal-common';
 
 /**
@@ -71,6 +72,7 @@ export class Assignment extends AssignmentBase {
 
     Assignment.validateTargetId(props.targetId);
     validatePrincipal(props.principal);
+    validatePermissionSetArn(props.permissionSet.permissionSetArn);
 
     new sso.CfnAssignment(this, 'assignment', {
       instanceArn: props.ssoInstanceArn,

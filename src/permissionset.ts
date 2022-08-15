@@ -8,6 +8,7 @@ import {
 import { Construct } from 'constructs';
 import { Assignment } from './assignment';
 import { PrincipalProperty } from './principal';
+import { permissionSetParseArn } from './private/permissionset-common';
 
 export interface CustomerManagedPolicyReference extends sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty {}
 export interface PermissionBoundary extends sso.CfnPermissionSet.PermissionsBoundaryProperty {}
@@ -25,10 +26,15 @@ export interface IPermissionSet extends IResource {
   readonly permissionSetArn: string;
 
   /**
+   * The SSO instance ARN of the permission set.
+   */
+  readonly ssoInstanceArn: string;
+
+  /**
    * Grant this permission set to a given principal for a given
    * targetId (AWS account identifier) on a given SSO instance.
    */
-  grant(principal: PrincipalProperty, targetId: string, ssoInstanceArn: string): Assignment;
+  grant(principal: PrincipalProperty, targetId: string): Assignment;
 }
 
 /**
@@ -36,10 +42,11 @@ export interface IPermissionSet extends IResource {
  */
 abstract class PermissionSetBase extends Resource implements IPermissionSet {
   public abstract readonly permissionSetArn: string;
+  public abstract readonly ssoInstanceArn: string;
 
-  public grant(principal: PrincipalProperty, targetId: string, ssoInstanceArn: string): Assignment {
+  public grant(principal: PrincipalProperty, targetId: string): Assignment {
     return new Assignment(this, 'Assignment', {
-      ssoInstanceArn,
+      ssoInstanceArn: this.ssoInstanceArn,
       permissionSet: this,
       principal: principal,
       targetId,
@@ -56,6 +63,11 @@ export interface PermissionSetAttributes {
    * `arn:aws:sso:::permissionSet/ins-instanceid/ps-permissionsetid`.
    */
   readonly permissionSetArn: string;
+
+  /**
+   * The SSO instance ARN of the permission set.
+   */
+  readonly ssoInstanceArn: string;
 }
 
 /**
@@ -145,6 +157,7 @@ export class PermissionSet extends PermissionSetBase {
   public static fromPermissionSetArn(scope: Construct, id: string, permissionSetArn: string): IPermissionSet {
     class Import extends PermissionSetBase {
       public readonly permissionSetArn = permissionSetArn;
+      public readonly ssoInstanceArn = permissionSetParseArn(permissionSetArn).partition!;
     };
 
     const permissionSet = new Import(scope, id);
@@ -161,6 +174,11 @@ export class PermissionSet extends PermissionSetBase {
    * The permission set ARN of the permission set.
    */
   public readonly permissionSetArn: string;
+
+  /**
+   * The SSO instance the permission set belongs to
+   */
+  public readonly ssoInstanceArn: string;
 
   constructor(scope: Construct, id: string, props: PermissionSetProps) {
     super (scope, id);
@@ -194,6 +212,7 @@ export class PermissionSet extends PermissionSetBase {
       sessionDuration: props.sessionDuration ? props.sessionDuration.toIsoString() : undefined,
     });
 
+    this.ssoInstanceArn = props.ssoInstanceArn;
     this.permissionSetArn = this.cfnPermissionSet.attrPermissionSetArn;
   }
 }

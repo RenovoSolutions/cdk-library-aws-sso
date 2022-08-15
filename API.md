@@ -278,7 +278,7 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ##### `grant` <a name="grant" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant"></a>
 
 ```typescript
-public grant(principal: PrincipalProperty, targetId: string, ssoInstanceArn: string): Assignment
+public grant(principal: PrincipalProperty, targetId: string): Assignment
 ```
 
 Grant this permission set to a given principal for a given targetId (AWS account identifier) on a given SSO instance.
@@ -290,12 +290,6 @@ Grant this permission set to a given principal for a given targetId (AWS account
 ---
 
 ###### `targetId`<sup>Required</sup> <a name="targetId" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.targetId"></a>
-
-- *Type:* string
-
----
-
-###### `ssoInstanceArn`<sup>Required</sup> <a name="ssoInstanceArn" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.ssoInstanceArn"></a>
 
 - *Type:* string
 
@@ -399,6 +393,7 @@ Reference an existing permission set by ARN.
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionSet.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionSet.property.cfnPermissionSet">cfnPermissionSet</a></code> | <code>aws-cdk-lib.aws_sso.CfnPermissionSet</code> | The underlying CfnPermissionSet resource. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionSet.property.permissionSetArn">permissionSetArn</a></code> | <code>string</code> | The permission set ARN of the permission set. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionSet.property.ssoInstanceArn">ssoInstanceArn</a></code> | <code>string</code> | The SSO instance the permission set belongs to. |
 
 ---
 
@@ -466,6 +461,18 @@ public readonly permissionSetArn: string;
 - *Type:* string
 
 The permission set ARN of the permission set.
+
+---
+
+##### `ssoInstanceArn`<sup>Required</sup> <a name="ssoInstanceArn" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.property.ssoInstanceArn"></a>
+
+```typescript
+public readonly ssoInstanceArn: string;
+```
+
+- *Type:* string
+
+The SSO instance the permission set belongs to.
 
 ---
 
@@ -667,6 +674,7 @@ const permissionSetAttributes: PermissionSetAttributes = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionSetAttributes.property.permissionSetArn">permissionSetArn</a></code> | <code>string</code> | The permission set ARN of the permission set. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionSetAttributes.property.ssoInstanceArn">ssoInstanceArn</a></code> | <code>string</code> | The SSO instance ARN of the permission set. |
 
 ---
 
@@ -682,6 +690,18 @@ The permission set ARN of the permission set.
 
 Such as
 `arn:aws:sso:::permissionSet/ins-instanceid/ps-permissionsetid`.
+
+---
+
+##### `ssoInstanceArn`<sup>Required</sup> <a name="ssoInstanceArn" id="@renovosolutions/cdk-library-aws-sso.PermissionSetAttributes.property.ssoInstanceArn"></a>
+
+```typescript
+public readonly ssoInstanceArn: string;
+```
+
+- *Type:* string
+
+The SSO instance ARN of the permission set.
 
 ---
 
@@ -983,7 +1003,7 @@ The resource interface for an AWS SSO permission set.
 ##### `grant` <a name="grant" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant"></a>
 
 ```typescript
-public grant(principal: PrincipalProperty, targetId: string, ssoInstanceArn: string): Assignment
+public grant(principal: PrincipalProperty, targetId: string): Assignment
 ```
 
 Grant this permission set to a given principal for a given targetId (AWS account identifier) on a given SSO instance.
@@ -1000,12 +1020,6 @@ Grant this permission set to a given principal for a given targetId (AWS account
 
 ---
 
-###### `ssoInstanceArn`<sup>Required</sup> <a name="ssoInstanceArn" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.ssoInstanceArn"></a>
-
-- *Type:* string
-
----
-
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
@@ -1014,6 +1028,7 @@ Grant this permission set to a given principal for a given targetId (AWS account
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet.property.permissionSetArn">permissionSetArn</a></code> | <code>string</code> | The permission set ARN of the permission set. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet.property.ssoInstanceArn">ssoInstanceArn</a></code> | <code>string</code> | The SSO instance ARN of the permission set. |
 
 ---
 
@@ -1072,6 +1087,18 @@ The permission set ARN of the permission set.
 
 Such as
 `arn:aws:sso:::permissionSet/ins-instanceid/ps-permissionsetid`.
+
+---
+
+##### `ssoInstanceArn`<sup>Required</sup> <a name="ssoInstanceArn" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.property.ssoInstanceArn"></a>
+
+```typescript
+public readonly ssoInstanceArn: string;
+```
+
+- *Type:* string
+
+The SSO instance ARN of the permission set.
 
 ---
 
