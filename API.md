@@ -278,26 +278,20 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ##### `grant` <a name="grant" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant"></a>
 
 ```typescript
-public grant(principal: PrincipalProperty, targetId: string, targetType?: TargetTypes): Assignment
+public grant(id: string, assignmentOptions: AssignmentOptions): Assignment
 ```
 
 Grant this permission set to a given principal for a given targetId (AWS account identifier) on a given SSO instance.
 
-###### `principal`<sup>Required</sup> <a name="principal" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.principal"></a>
-
-- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a>
-
----
-
-###### `targetId`<sup>Required</sup> <a name="targetId" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.targetId"></a>
+###### `id`<sup>Required</sup> <a name="id" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-###### `targetType`<sup>Optional</sup> <a name="targetType" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.targetType"></a>
+###### `assignmentOptions`<sup>Required</sup> <a name="assignmentOptions" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.assignmentOptions"></a>
 
-- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a>
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.AssignmentOptions">AssignmentOptions</a>
 
 ---
 
@@ -498,6 +492,65 @@ const assignmentAttributes: AssignmentAttributes = { ... }
 ```
 
 
+### AssignmentOptions <a name="AssignmentOptions" id="@renovosolutions/cdk-library-aws-sso.AssignmentOptions"></a>
+
+The options for creating an assignment.
+
+#### Initializer <a name="Initializer" id="@renovosolutions/cdk-library-aws-sso.AssignmentOptions.Initializer"></a>
+
+```typescript
+import { AssignmentOptions } from '@renovosolutions/cdk-library-aws-sso'
+
+const assignmentOptions: AssignmentOptions = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentOptions.property.principal">principal</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a></code> | The principal to assign the permission set to. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentOptions.property.targetId">targetId</a></code> | <code>string</code> | The target id the permission set will be assigned to. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentOptions.property.targetType">targetType</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a></code> | The entity type for which the assignment will be created. |
+
+---
+
+##### `principal`<sup>Required</sup> <a name="principal" id="@renovosolutions/cdk-library-aws-sso.AssignmentOptions.property.principal"></a>
+
+```typescript
+public readonly principal: PrincipalProperty;
+```
+
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a>
+
+The principal to assign the permission set to.
+
+---
+
+##### `targetId`<sup>Required</sup> <a name="targetId" id="@renovosolutions/cdk-library-aws-sso.AssignmentOptions.property.targetId"></a>
+
+```typescript
+public readonly targetId: string;
+```
+
+- *Type:* string
+
+The target id the permission set will be assigned to.
+
+---
+
+##### `targetType`<sup>Optional</sup> <a name="targetType" id="@renovosolutions/cdk-library-aws-sso.AssignmentOptions.property.targetType"></a>
+
+```typescript
+public readonly targetType: TargetTypes;
+```
+
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a>
+- *Default:* TargetTypes.AWS_ACCOUNT
+
+The entity type for which the assignment will be created.
+
+---
+
 ### AssignmentProps <a name="AssignmentProps" id="@renovosolutions/cdk-library-aws-sso.AssignmentProps"></a>
 
 The properties of a new assignment.
@@ -514,22 +567,10 @@ const assignmentProps: AssignmentProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.permissionSet">permissionSet</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet">IPermissionSet</a></code> | The permission set to assign to the principal. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.principal">principal</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a></code> | The principal to assign the permission set to. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.targetId">targetId</a></code> | <code>string</code> | The target id the permission set will be assigned to. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.targetType">targetType</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a></code> | The entity type for which the assignment will be created. |
-
----
-
-##### `permissionSet`<sup>Required</sup> <a name="permissionSet" id="@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.permissionSet"></a>
-
-```typescript
-public readonly permissionSet: IPermissionSet;
-```
-
-- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet">IPermissionSet</a>
-
-The permission set to assign to the principal.
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.permissionSet">permissionSet</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet">IPermissionSet</a></code> | The permission set to assign to the principal. |
 
 ---
 
@@ -567,6 +608,18 @@ public readonly targetType: TargetTypes;
 - *Default:* TargetTypes.AWS_ACCOUNT
 
 The entity type for which the assignment will be created.
+
+---
+
+##### `permissionSet`<sup>Required</sup> <a name="permissionSet" id="@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.permissionSet"></a>
+
+```typescript
+public readonly permissionSet: IPermissionSet;
+```
+
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet">IPermissionSet</a>
+
+The permission set to assign to the principal.
 
 ---
 
@@ -1010,26 +1063,20 @@ The resource interface for an AWS SSO permission set.
 ##### `grant` <a name="grant" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant"></a>
 
 ```typescript
-public grant(principal: PrincipalProperty, targetId: string, targetType?: TargetTypes): Assignment
+public grant(id: string, assignmentOptions: AssignmentOptions): Assignment
 ```
 
 Grant this permission set to a given principal for a given targetId (AWS account identifier) on a given SSO instance.
 
-###### `principal`<sup>Required</sup> <a name="principal" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.principal"></a>
-
-- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a>
-
----
-
-###### `targetId`<sup>Required</sup> <a name="targetId" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.targetId"></a>
+###### `id`<sup>Required</sup> <a name="id" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-###### `targetType`<sup>Optional</sup> <a name="targetType" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.targetType"></a>
+###### `assignmentOptions`<sup>Required</sup> <a name="assignmentOptions" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.assignmentOptions"></a>
 
-- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a>
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.AssignmentOptions">AssignmentOptions</a>
 
 ---
 

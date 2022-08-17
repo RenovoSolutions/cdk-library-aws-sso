@@ -10,13 +10,13 @@ Object {
     },
   },
   "Resources": Object {
-    "PermissionSetAssignmentassignment0A69C6D0": Object {
+    "PermissionSetpermissionSetAssignmentassignmentBF53D72E": Object {
       "Properties": Object {
         "InstanceArn": "arn:aws:sso:::instance/ssoins-1234567891234567",
         "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-1234567891234567/ps-55a5555a5a55ab55",
-        "PrincipalId": "25750630-0ae9-479a-97c2-0afc2d5b4eac",
+        "PrincipalId": "12350630-0ae9-479a-97c2-0afc2d5b4eac",
         "PrincipalType": "GROUP",
-        "TargetId": "124567890123456",
+        "TargetId": "344567890123456",
         "TargetType": "AWS_ACCOUNT",
       },
       "Type": "AWS::SSO::Assignment",

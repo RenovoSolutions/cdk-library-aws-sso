@@ -6,8 +6,7 @@ import {
   Duration,
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { Assignment, TargetTypes } from './assignment';
-import { PrincipalProperty } from './principal';
+import { Assignment, AssignmentOptions } from './assignment';
 import { permissionSetParseArn } from './private/permissionset-common';
 
 export interface CustomerManagedPolicyReference extends sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty {}
@@ -34,7 +33,7 @@ export interface IPermissionSet extends IResource {
    * Grant this permission set to a given principal for a given
    * targetId (AWS account identifier) on a given SSO instance.
    */
-  grant(principal: PrincipalProperty, targetId: string, targetType?: TargetTypes): Assignment;
+  grant(id: string, assignmentOptions: AssignmentOptions): Assignment;
 }
 
 /**
@@ -44,12 +43,12 @@ abstract class PermissionSetBase extends Resource implements IPermissionSet {
   public abstract readonly permissionSetArn: string;
   public abstract readonly ssoInstanceArn: string;
 
-  public grant(principal: PrincipalProperty, targetId: string, targetType: TargetTypes = TargetTypes.AWS_ACCOUNT): Assignment {
-    return new Assignment(this, 'Assignment', {
+  public grant(id: string, assignmentOptions: AssignmentOptions): Assignment {
+    return new Assignment(this, id, {
       permissionSet: this,
-      principal: principal,
-      targetId,
-      targetType,
+      principal: assignmentOptions.principal,
+      targetId: assignmentOptions.targetId,
+      targetType: assignmentOptions.targetType,
     });
   }
 };

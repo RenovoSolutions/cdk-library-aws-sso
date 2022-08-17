@@ -59,12 +59,12 @@ new Assignment(this, 'ExampleAssignment', {
 });
 
 // assign it to something else with a grant
-permissionSetExample.grant(
-  {
+permissionSetExample.grant('permissionSetExampleAssignment',
+  principal: {
     principalId: '12350630-0ae9-479a-97c2-0afc2d5b4eac',
     principalType: PrincipalTypes.GROUP,
   },
-  '344567890123456',
+  targetId: '344567890123456',
 );
 
 // import an existing permission set

@@ -35,30 +35,35 @@ abstract class AssignmentBase extends Resource implements IAssignment {};
 export interface AssignmentAttributes {}
 
 /**
+ * The options for creating an assignment.
+ */
+export interface AssignmentOptions {
+  /**
+  * The principal to assign the permission set to
+  */
+  readonly principal: PrincipalProperty;
+
+  /**
+  * The target id the permission set will be assigned to
+  */
+  readonly targetId: string;
+
+  /**
+  * The entity type for which the assignment will be created.
+  *
+  * @default TargetTypes.AWS_ACCOUNT
+  */
+  readonly targetType?: TargetTypes;
+}
+
+/**
  * The properties of a new assignment.
  */
-export interface AssignmentProps {
+export interface AssignmentProps extends AssignmentOptions {
   /**
    * The permission set to assign to the principal
    */
   readonly permissionSet: IPermissionSet;
-
-  /**
-   * The principal to assign the permission set to
-   */
-  readonly principal: PrincipalProperty;
-
-  /**
-   * The target id the permission set will be assigned to
-   */
-  readonly targetId: string;
-
-  /**
-   * The entity type for which the assignment will be created.
-   *
-   * @default TargetTypes.AWS_ACCOUNT
-   */
-  readonly targetType?: TargetTypes;
 }
 
 /**
