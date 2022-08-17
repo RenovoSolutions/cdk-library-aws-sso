@@ -34,7 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
       - name: Set git identity
         run: |-
           git config user.name "github-actions"
