@@ -9,6 +9,10 @@ import { PrincipalProperty } from './principal';
 import { validatePermissionSetArn } from './private/permissionset-common';
 import { validatePrincipal } from './private/principal-common';
 
+export enum TargetTypes {
+  AWS_ACCOUNT = 'AWS_ACCOUNT',
+}
+
 /**
  * The resource interface for an AWS SSO assignment.
  *
@@ -48,6 +52,13 @@ export interface AssignmentProps {
    * The target id the permission set will be assigned to
    */
   readonly targetId: string;
+
+  /**
+   * The entity type for which the assignment will be created.
+   *
+   * @default TargetTypes.AWS_ACCOUNT
+   */
+  readonly targetType?: TargetTypes;
 }
 
 /**
@@ -56,18 +67,22 @@ export interface AssignmentProps {
  * Has no import method because there is no attributes to import.
  */
 export class Assignment extends AssignmentBase {
-  private static validateTargetId(targetId: string) {
+  private static validateAwsAccountTargetId(targetId: string) {
     if (!targetId.match(/\d{12}/)) {
-      throw new Error(`targetId should be a 12 digit AWS account id, but was ${targetId}`);
+      throw new Error(`targetId should be a 12 digit AWS account id: ${targetId}`);
     }
   }
 
   constructor(scope: Construct, id: string, props: AssignmentProps) {
     super (scope, id);
 
-    Assignment.validateTargetId(props.targetId);
+    if (props.targetType === TargetTypes.AWS_ACCOUNT) {
+      Assignment.validateAwsAccountTargetId(props.targetId);
+    }
     validatePrincipal(props.principal);
     validatePermissionSetArn(props.permissionSet.permissionSetArn);
+
+    const targetType = props.targetType ?? TargetTypes.AWS_ACCOUNT;
 
     new sso.CfnAssignment(this, 'assignment', {
       instanceArn: props.permissionSet.ssoInstanceArn,
@@ -75,7 +90,7 @@ export class Assignment extends AssignmentBase {
       principalId: props.principal.principalId,
       principalType: props.principal.principalType,
       targetId: props.targetId,
-      targetType: 'AWS_ACCOUNT',
+      targetType,
     });
   }
 }
