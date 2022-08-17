@@ -6,7 +6,7 @@ import {
   Duration,
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { Assignment } from './assignment';
+import { Assignment, TargetTypes } from './assignment';
 import { PrincipalProperty } from './principal';
 import { permissionSetParseArn } from './private/permissionset-common';
 
@@ -34,7 +34,7 @@ export interface IPermissionSet extends IResource {
    * Grant this permission set to a given principal for a given
    * targetId (AWS account identifier) on a given SSO instance.
    */
-  grant(principal: PrincipalProperty, targetId: string): Assignment;
+  grant(principal: PrincipalProperty, targetId: string, targetType?: TargetTypes): Assignment;
 }
 
 /**
@@ -44,11 +44,12 @@ abstract class PermissionSetBase extends Resource implements IPermissionSet {
   public abstract readonly permissionSetArn: string;
   public abstract readonly ssoInstanceArn: string;
 
-  public grant(principal: PrincipalProperty, targetId: string): Assignment {
+  public grant(principal: PrincipalProperty, targetId: string, targetType: TargetTypes = TargetTypes.AWS_ACCOUNT): Assignment {
     return new Assignment(this, 'Assignment', {
       permissionSet: this,
       principal: principal,
       targetId,
+      targetType,
     });
   }
 };
@@ -156,7 +157,7 @@ export class PermissionSet extends PermissionSetBase {
   public static fromPermissionSetArn(scope: Construct, id: string, permissionSetArn: string): IPermissionSet {
     class Import extends PermissionSetBase {
       public readonly permissionSetArn = permissionSetArn;
-      public readonly ssoInstanceArn = permissionSetParseArn(permissionSetArn).partition!;
+      public readonly ssoInstanceArn = `arn:aws:sso:::instance/${permissionSetParseArn(permissionSetArn).resourceName!.split('/')[0]}`;
     };
 
     const permissionSet = new Import(scope, id);
@@ -192,7 +193,7 @@ export class PermissionSet extends PermissionSetBase {
     }
 
     if (!props.name.match(/[\w+=,.@-]+/)) {
-      throw new Error(`Invalid permission set name. Name may only contain alphanumeric characters and any of: +=,.@-. You gave: ${props.name}`);
+      throw new Error(`Invalid permission set name. Name may only contain alphanumeric characters and any of: +=,.@-: ${props.name}`);
     }
 
     if (props.relayStateType && !props.relayStateType.match(/[a-zA-Z0-9&$@#\\\/%?=~\-_'"|!:,.;*+\[\]\ \(\)\{\}]+/)) {

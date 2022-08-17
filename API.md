@@ -278,7 +278,7 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ##### `grant` <a name="grant" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant"></a>
 
 ```typescript
-public grant(principal: PrincipalProperty, targetId: string): Assignment
+public grant(principal: PrincipalProperty, targetId: string, targetType?: TargetTypes): Assignment
 ```
 
 Grant this permission set to a given principal for a given targetId (AWS account identifier) on a given SSO instance.
@@ -292,6 +292,12 @@ Grant this permission set to a given principal for a given targetId (AWS account
 ###### `targetId`<sup>Required</sup> <a name="targetId" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.targetId"></a>
 
 - *Type:* string
+
+---
+
+###### `targetType`<sup>Optional</sup> <a name="targetType" id="@renovosolutions/cdk-library-aws-sso.PermissionSet.grant.parameter.targetType"></a>
+
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a>
 
 ---
 
@@ -511,6 +517,7 @@ const assignmentProps: AssignmentProps = { ... }
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.permissionSet">permissionSet</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.IPermissionSet">IPermissionSet</a></code> | The permission set to assign to the principal. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.principal">principal</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.PrincipalProperty">PrincipalProperty</a></code> | The principal to assign the permission set to. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.targetId">targetId</a></code> | <code>string</code> | The target id the permission set will be assigned to. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.targetType">targetType</a></code> | <code><a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a></code> | The entity type for which the assignment will be created. |
 
 ---
 
@@ -547,6 +554,19 @@ public readonly targetId: string;
 - *Type:* string
 
 The target id the permission set will be assigned to.
+
+---
+
+##### `targetType`<sup>Optional</sup> <a name="targetType" id="@renovosolutions/cdk-library-aws-sso.AssignmentProps.property.targetType"></a>
+
+```typescript
+public readonly targetType: TargetTypes;
+```
+
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a>
+- *Default:* TargetTypes.AWS_ACCOUNT
+
+The entity type for which the assignment will be created.
 
 ---
 
@@ -990,7 +1010,7 @@ The resource interface for an AWS SSO permission set.
 ##### `grant` <a name="grant" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant"></a>
 
 ```typescript
-public grant(principal: PrincipalProperty, targetId: string): Assignment
+public grant(principal: PrincipalProperty, targetId: string, targetType?: TargetTypes): Assignment
 ```
 
 Grant this permission set to a given principal for a given targetId (AWS account identifier) on a given SSO instance.
@@ -1004,6 +1024,12 @@ Grant this permission set to a given principal for a given targetId (AWS account
 ###### `targetId`<sup>Required</sup> <a name="targetId" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.targetId"></a>
 
 - *Type:* string
+
+---
+
+###### `targetType`<sup>Optional</sup> <a name="targetType" id="@renovosolutions/cdk-library-aws-sso.IPermissionSet.grant.parameter.targetType"></a>
+
+- *Type:* <a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes">TargetTypes</a>
 
 ---
 
@@ -1108,6 +1134,21 @@ The SSO instance ARN of the permission set.
 
 
 ##### `GROUP` <a name="GROUP" id="@renovosolutions/cdk-library-aws-sso.PrincipalTypes.GROUP"></a>
+
+---
+
+
+### TargetTypes <a name="TargetTypes" id="@renovosolutions/cdk-library-aws-sso.TargetTypes"></a>
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.TargetTypes.AWS_ACCOUNT">AWS_ACCOUNT</a></code> | *No description.* |
+
+---
+
+##### `AWS_ACCOUNT` <a name="AWS_ACCOUNT" id="@renovosolutions/cdk-library-aws-sso.TargetTypes.AWS_ACCOUNT"></a>
 
 ---
 
