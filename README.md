@@ -59,13 +59,13 @@ new Assignment(this, 'ExampleAssignment', {
 });
 
 // assign it to something else with a grant
-permissionSetExample.grant('permissionSetExampleAssignment',
+permissionSetExample.grant('permissionSetExampleAssignment', {
   principal: {
     principalId: '12350630-0ae9-479a-97c2-0afc2d5b4eac',
     principalType: PrincipalTypes.GROUP,
   },
   targetId: '344567890123456',
-);
+});
 
 // import an existing permission set
 const existingPermissionSetExample = PermissionSet.fromPermissionSetArn(this, 'existingPermissionSetExample', 'arn:aws:sso:::permissionSet/ssoins-1234567891234567/ps-55a5555a5a55ab55');
