@@ -20,7 +20,7 @@ jobs:
         uses: renovosolutions/gh-action-awscdk-projen-version-bump@v2.3.0
         with:
           major-version: 2
-          ref: master
+          ref: main
   pr:
     if: needs.upgrade-cdk.outputs.patch_created
     name: Create Pull Request
