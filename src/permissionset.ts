@@ -157,7 +157,7 @@ export class PermissionSet extends PermissionSetBase {
   public static fromPermissionSetArn(scope: Construct, id: string, permissionSetArn: string): IPermissionSet {
     class Import extends PermissionSetBase {
       public readonly permissionSetArn = permissionSetArn;
-      public readonly ssoInstanceArn = permissionSetParseArn(permissionSetArn).partition!;
+      public readonly ssoInstanceArn = `arn:aws:sso:::instance/${permissionSetParseArn(permissionSetArn).resourceName!.split('/')[0]}`;
     };
 
     const permissionSet = new Import(scope, id);
