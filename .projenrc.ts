@@ -3,7 +3,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Renovo Solutions',
   authorAddress: 'webmaster+cdk@renovo1.com',
   projenrcTs: true,
-  cdkVersion: '2.41.0',
+  cdkVersion: '2.43.0',
   defaultReleaseBranch: 'main',
   name: '@renovosolutions/cdk-library-aws-sso',
   description: 'AWS CDK Construct Library for AWS SSO',
