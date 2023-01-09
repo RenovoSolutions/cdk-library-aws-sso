@@ -1692,9 +1692,9 @@ combined-stream@^1.0.8:
     delayed-stream "~1.0.0"
 
 commander@^9.4.1:
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
-  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
+  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 comment-json@4.2.2:
   version "4.2.2"
@@ -5183,10 +5183,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.65.79:
-  version "0.65.79"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.65.79.tgz#597b3570e16ae9d33c2dbc144688cc1341043fca"
-  integrity sha512-MSnSYmDWP+A4SfRb4j5+ssTnfsrwzXOCKaR6XvsutF8NyilQgmDPZ/0YA5UT594hU4Ei1O3vNy+/yXRWX7h6qg==
+projen@^0.66.9:
+  version "0.66.9"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.66.9.tgz#abc88b08c276912652f15e40f677db380ad484b4"
+  integrity sha512-lfjcKUSMOZ7RZ6h4sbwJgp1TAcchT9RFPehP7geV/2bIQfrBMc1rVL3ksKN3GYepcSEkgEn/6seL5Dy2Wzo0Ew==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
