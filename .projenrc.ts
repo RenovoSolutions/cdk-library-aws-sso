@@ -7,7 +7,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   name: '@renovosolutions/cdk-library-aws-sso',
   description: 'AWS CDK Construct Library for AWS SSO',
-  repositoryUrl: 'https://github.com/brandon/cdk-library-aws-sso.git',
+  repositoryUrl: 'https://github.com/RenovoSolutions/cdk-library-aws-sso.git',
   keywords: [
     'cdk',
     'aws-cdk',
