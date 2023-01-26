@@ -637,8 +637,8 @@ const customerManagedPolicyReference: CustomerManagedPolicyReference = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.CustomerManagedPolicyReference.property.name">name</a></code> | <code>string</code> | `CfnPermissionSet.CustomerManagedPolicyReferenceProperty.Name`. |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.CustomerManagedPolicyReference.property.path">path</a></code> | <code>string</code> | `CfnPermissionSet.CustomerManagedPolicyReferenceProperty.Path`. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.CustomerManagedPolicyReference.property.name">name</a></code> | <code>string</code> | The name of the IAM policy that you have configured in each account where you want to deploy your permission set. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.CustomerManagedPolicyReference.property.path">path</a></code> | <code>string</code> | The path to the IAM policy that you have configured in each account where you want to deploy your permission set. |
 
 ---
 
@@ -650,7 +650,7 @@ public readonly name: string;
 
 - *Type:* string
 
-`CfnPermissionSet.CustomerManagedPolicyReferenceProperty.Name`.
+The name of the IAM policy that you have configured in each account where you want to deploy your permission set.
 
 > [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html#cfn-sso-permissionset-customermanagedpolicyreference-name](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html#cfn-sso-permissionset-customermanagedpolicyreference-name)
 
@@ -664,7 +664,9 @@ public readonly path: string;
 
 - *Type:* string
 
-`CfnPermissionSet.CustomerManagedPolicyReferenceProperty.Path`.
+The path to the IAM policy that you have configured in each account where you want to deploy your permission set.
+
+The default is `/` . For more information, see [Friendly names and paths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names) in the *IAM User Guide* .
 
 > [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html#cfn-sso-permissionset-customermanagedpolicyreference-path](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-customermanagedpolicyreference.html#cfn-sso-permissionset-customermanagedpolicyreference-path)
 
@@ -684,8 +686,8 @@ const permissionBoundary: PermissionBoundary = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.customerManagedPolicyReference">customerManagedPolicyReference</a></code> | <code>aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty \| aws-cdk-lib.IResolvable</code> | `CfnPermissionSet.PermissionsBoundaryProperty.CustomerManagedPolicyReference`. |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.managedPolicyArn">managedPolicyArn</a></code> | <code>string</code> | `CfnPermissionSet.PermissionsBoundaryProperty.ManagedPolicyArn`. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.customerManagedPolicyReference">customerManagedPolicyReference</a></code> | <code>aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty \| aws-cdk-lib.IResolvable</code> | Specifies the name and path of a customer managed policy. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.managedPolicyArn">managedPolicyArn</a></code> | <code>string</code> | The AWS managed policy ARN that you want to attach to a permission set as a permissions boundary. |
 
 ---
 
@@ -697,7 +699,9 @@ public readonly customerManagedPolicyReference: CustomerManagedPolicyReferencePr
 
 - *Type:* aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty | aws-cdk-lib.IResolvable
 
-`CfnPermissionSet.PermissionsBoundaryProperty.CustomerManagedPolicyReference`.
+Specifies the name and path of a customer managed policy.
+
+You must have an IAM policy that matches the name and path in each AWS account where you want to deploy your permission set.
 
 > [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html#cfn-sso-permissionset-permissionsboundary-customermanagedpolicyreference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html#cfn-sso-permissionset-permissionsboundary-customermanagedpolicyreference)
 
@@ -711,7 +715,7 @@ public readonly managedPolicyArn: string;
 
 - *Type:* string
 
-`CfnPermissionSet.PermissionsBoundaryProperty.ManagedPolicyArn`.
+The AWS managed policy ARN that you want to attach to a permission set as a permissions boundary.
 
 > [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html#cfn-sso-permissionset-permissionsboundary-managedpolicyarn](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sso-permissionset-permissionsboundary.html#cfn-sso-permissionset-permissionsboundary-managedpolicyarn)
 
