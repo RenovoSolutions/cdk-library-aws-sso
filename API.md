@@ -686,7 +686,7 @@ const permissionBoundary: PermissionBoundary = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.customerManagedPolicyReference">customerManagedPolicyReference</a></code> | <code>aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty \| aws-cdk-lib.IResolvable</code> | Specifies the name and path of a customer managed policy. |
+| <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.customerManagedPolicyReference">customerManagedPolicyReference</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty</code> | Specifies the name and path of a customer managed policy. |
 | <code><a href="#@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.managedPolicyArn">managedPolicyArn</a></code> | <code>string</code> | The AWS managed policy ARN that you want to attach to a permission set as a permissions boundary. |
 
 ---
@@ -694,10 +694,10 @@ const permissionBoundary: PermissionBoundary = { ... }
 ##### `customerManagedPolicyReference`<sup>Optional</sup> <a name="customerManagedPolicyReference" id="@renovosolutions/cdk-library-aws-sso.PermissionBoundary.property.customerManagedPolicyReference"></a>
 
 ```typescript
-public readonly customerManagedPolicyReference: CustomerManagedPolicyReferenceProperty | IResolvable;
+public readonly customerManagedPolicyReference: IResolvable | CustomerManagedPolicyReferenceProperty;
 ```
 
-- *Type:* aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty | aws-cdk-lib.IResolvable
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_sso.CfnPermissionSet.CustomerManagedPolicyReferenceProperty
 
 Specifies the name and path of a customer managed policy.
 
