@@ -3,6 +3,7 @@ import {
   App,
   aws_iam as iam,
   Duration,
+  Fn,
 } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import {
@@ -20,7 +21,7 @@ test('Snapshot', () => {
     ],
     description: 'Test Permission Set',
     name: 'TestPermissionSet',
-    ssoInstanceArn: 'arn:aws:sso:::instance/ssoins-1234567891234567',
+    ssoInstanceArn: Fn.importValue('path.to.ssoInstanceArn.in.buildConfig'),
     relayStateType: 'https://us-east-1.console.aws.amazon.com/rds/home',
     sessionDuration: Duration.hours(10),
     customerManagedPolicyReferences: [
