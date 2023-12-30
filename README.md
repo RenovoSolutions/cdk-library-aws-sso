@@ -52,7 +52,7 @@ const permissionSetExample = new PermissionSet(this, 'permissionSet', {
 new Assignment(this, 'ExampleAssignment', {
   permissionSet: permissionSetExample,
   principal: {
-    principalId: '25750630-0ae9-479a-97c2-0afc2d5b4eac,
+    principalId: '25750630-0ae9-479a-97c2-0afc2d5b4eac',
     principalType: PrincipalTypes.GROUP,
   },
   targetId: '124567890123456',
