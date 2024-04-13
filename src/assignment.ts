@@ -2,6 +2,7 @@ import {
   aws_sso as sso,
   IResource,
   Resource,
+  Token,
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { IPermissionSet } from './permissionset';
@@ -73,7 +74,7 @@ export interface AssignmentProps extends AssignmentOptions {
  */
 export class Assignment extends AssignmentBase {
   private static validateAwsAccountTargetId(targetId: string) {
-    if (!targetId.match(/\d{12}/)) {
+    if (!Token.isUnresolved(targetId) && !targetId.match(/\d{12}/)) {
       throw new Error(`targetId should be a 12 digit AWS account id: ${targetId}`);
     }
   }
