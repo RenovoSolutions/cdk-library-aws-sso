@@ -82,7 +82,7 @@ export class Assignment extends AssignmentBase {
   constructor(scope: Construct, id: string, props: AssignmentProps) {
     super (scope, id);
 
-    if (props.targetType === TargetTypes.AWS_ACCOUNT) {
+    if (props.targetType === TargetTypes.AWS_ACCOUNT || props.targetType === undefined) {
       Assignment.validateAwsAccountTargetId(props.targetId);
     }
     validatePrincipal(props.principal);
