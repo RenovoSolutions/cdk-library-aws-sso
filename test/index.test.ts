@@ -1,9 +1,12 @@
 import {
   Stack,
   App,
+  aws_identitystore as identityStore,
+  Fn,
 } from 'aws-cdk-lib';
 // import { Template } from 'aws-cdk-lib/assertions';
 import {
+  Assignment,
   PermissionSet,
   PrincipalTypes,
 } from '../src/index';
@@ -121,6 +124,92 @@ test('PermissionSetCreationSucceedsWithRequiredPropsOnly', () => {
   expect(() => {
     new PermissionSet(stack, 'PermissionSet', {
       name: 'TestPermissionSet',
+      ssoInstanceArn: 'arn:aws:sso:::instance/ssoins-1234567891234567',
+    });
+  }).not.toThrow();
+});
+
+test('SettingPrincipalIdInAssignmentFromUnresolvedTokenDoesNotErrorForUnresolvedToken', () => {
+  const app = new App();
+  const stack = new Stack(app, 'TestStack');
+
+  expect(() => {
+    const group = new identityStore.CfnGroup(stack, 'Group', {
+      displayName: 'TestGroup',
+      identityStoreId: '24e986f7-6bbb-44d2-bee3-c3bce03fc77c',
+    });
+
+    const permissionSet = new PermissionSet(stack, 'PermissionSet', {
+      name: 'TestPermissionSet',
+      ssoInstanceArn: 'arn:aws:sso:::instance/ssoins-1234567891234567',
+    });
+
+    new Assignment(stack, 'Assignment', {
+      permissionSet,
+      principal: {
+        principalId: group.attrGroupId,
+        principalType: PrincipalTypes.GROUP,
+      },
+      targetId: '123456789012',
+    });
+  }).not.toThrow();
+});
+
+test('SettingTargetAccountIdOnAssignmentFromUnresolvedTokenDoesNotErrorForUnresolvedToken', () => {
+  const app = new App();
+  const stack = new Stack(app, 'TestStack');
+
+  expect(() => {
+    const permissionSet = new PermissionSet(stack, 'PermissionSet', {
+      name: 'TestPermissionSet',
+      ssoInstanceArn: 'arn:aws:sso:::instance/ssoins-1234567891234567',
+    });
+
+    new Assignment(stack, 'Assignment', {
+      permissionSet,
+      principal: {
+        principalId: '12350630-0ae9-479a-97c2-0afc2d5b4eac',
+        principalType: PrincipalTypes.GROUP,
+      },
+      targetId: Fn.importValue('path.to.targetAccountId.in.buildConfig'),
+    });
+  }).not.toThrow();
+});
+
+test('SettingSsoInstanceArnOnPermissionSetFromImportedValueDoesNotErrorForUnresolvedToken', () => {
+  const app = new App();
+  const stack = new Stack(app, 'TestStack');
+
+  const ssoInstanceArn = Fn.importValue('path.to.ssoInstanceArn.in.buildConfig');
+
+  expect(() => {
+    new PermissionSet(stack, 'PermissionSet', {
+      name: 'TestPermissionSet',
+      ssoInstanceArn,
+    });
+  }).not.toThrow();
+});
+
+test('SettingRelayStateTypeOnPermissionSetFromImportedValueDoesNotErrorForUnresolvedToken', () => {
+  const app = new App();
+  const stack = new Stack(app, 'TestStack');
+
+  expect(() => {
+    new PermissionSet(stack, 'PermissionSet', {
+      name: 'TestPermissionSet',
+      ssoInstanceArn: 'arn:aws:sso:::instance/ssoins-1234567891234567',
+      relayStateType: Fn.importValue('path.to.relayStateType.in.buildConfig'),
+    });
+  }).not.toThrow();
+});
+
+test('SettingNameOnPermissionSetFromImportedValueDoesNotErrorForUnresolvedToken', () => {
+  const app = new App();
+  const stack = new Stack(app, 'TestStack');
+
+  expect(() => {
+    new PermissionSet(stack, 'PermissionSet', {
+      name: Fn.importValue('path.to.permissionSetName.in.buildConfig'),
       ssoInstanceArn: 'arn:aws:sso:::instance/ssoins-1234567891234567',
     });
   }).not.toThrow();

@@ -4,6 +4,7 @@ import {
   IResource,
   Resource,
   Duration,
+  Token,
 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Assignment, AssignmentOptions } from './assignment';
@@ -187,15 +188,15 @@ export class PermissionSet extends PermissionSetBase {
       managedPolicies = props.awsManagedPolicies.map(policy => policy.managedPolicyArn);
     }
 
-    if (!props.ssoInstanceArn.match(/arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance\/(sso)?ins-[a-zA-Z0-9-.]{16}/)) {
+    if (!Token.isUnresolved(props.ssoInstanceArn) && !props.ssoInstanceArn.match(/arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance\/(sso)?ins-[a-zA-Z0-9-.]{16}/)) {
       throw new Error(`Invalid SSO instance ARN: ${props.ssoInstanceArn}`);
     }
 
-    if (!props.name.match(/[\w+=,.@-]+/)) {
+    if (!Token.isUnresolved(props.name) && !props.name.match(/[\w+=,.@-]+/)) {
       throw new Error(`Invalid permission set name. Name may only contain alphanumeric characters and any of: +=,.@-: ${props.name}`);
     }
 
-    if (props.relayStateType && !props.relayStateType.match(/[a-zA-Z0-9&$@#\\\/%?=~\-_'"|!:,.;*+\[\]\ \(\)\{\}]+/)) {
+    if (!Token.isUnresolved(props.relayStateType) && props.relayStateType && !props.relayStateType.match(/[a-zA-Z0-9&$@#\\\/%?=~\-_'"|!:,.;*+\[\]\ \(\)\{\}]+/)) {
       throw new Error(`Invalid relay state type: ${props.relayStateType}`);
     }
 

@@ -3,7 +3,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Renovo Solutions',
   authorAddress: 'webmaster+cdk@renovo1.com',
   projenrcTs: true,
-  cdkVersion: '2.86.0',
+  cdkVersion: '2.137.0',
   defaultReleaseBranch: 'main',
   name: '@renovosolutions/cdk-library-aws-sso',
   description: 'AWS CDK Construct Library for AWS SSO',
@@ -17,52 +17,18 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   depsUpgrade: true,
   depsUpgradeOptions: {
-    workflowOptions: {
-      labels: ['auto-approve', 'deps-upgrade'],
-    },
+    workflow: false,
     exclude: ['projen'],
   },
   githubOptions: {
-    mergify: true,
-    mergifyOptions: {
-      rules: [
-        {
-          name: 'Automatically approve dependency upgrade PRs if they pass build',
-          actions: {
-            review: {
-              type: 'APPROVE',
-              message: 'Automatically approved dependency upgrade PR',
-            },
-          },
-          conditions: [
-            'label=auto-approve',
-            'label=deps-upgrade',
-            '-label~=(do-not-merge)',
-            'status-success=build',
-            'author=github-actions[bot]',
-            'title="chore(deps): upgrade dependencies"',
-          ],
-        },
-      ],
-    },
+    mergify: false,
     pullRequestLintOptions: {
-      semanticTitle: true,
-      semanticTitleOptions: {
-        types: [
-          'chore',
-          'docs',
-          'feat',
-          'fix',
-          'ci',
-          'refactor',
-          'test',
-        ],
-      },
+      semanticTitle: false,
     },
   },
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  releaseWorkflow: true,
+  releaseWorkflow: false,
   docgen: true,
   eslint: true,
   publishToPypi: {
@@ -74,16 +40,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
     packageId: 'Renovo.AWSCDK.AWSSSO',
   },
   gitignore: ['**/__pycache__/**'],
+  buildWorkflow: false,
 });
 
 new javascript.UpgradeDependencies(project, {
   include: ['projen'],
   taskName: 'upgrade-projen',
-  workflow: true,
-  workflowOptions: {
-    schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 2 * * 1']),
-  },
-  pullRequestTitle: 'upgrade projen',
+  workflow: false,
 });
 
 project.synth();
