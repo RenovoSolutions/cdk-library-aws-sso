@@ -33,6 +33,9 @@ jspm_packages/
 /test-reports/
 junit.xml
 /coverage/
+/dist/changelog.md
+/dist/version.txt
+!/.github/workflows/release.yml
 !/.github/pull_request_template.md
 !/test/
 !/tsconfig.dev.json
