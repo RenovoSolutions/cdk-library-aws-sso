@@ -28,7 +28,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  releaseWorkflow: false,
+  release: true,
   docgen: true,
   eslint: true,
   publishToPypi: {
