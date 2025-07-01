@@ -1,17 +1,17 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Snapshot 1`] = `
-Object {
-  "Parameters": Object {
-    "BootstrapVersion": Object {
+{
+  "Parameters": {
+    "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
-  "Resources": Object {
-    "PermissionSetpermissionSetAssignmentassignmentBF53D72E": Object {
-      "Properties": Object {
+  "Resources": {
+    "PermissionSetpermissionSetAssignmentassignmentBF53D72E": {
+      "Properties": {
         "InstanceArn": "arn:aws:sso:::instance/ssoins-1234567891234567",
         "PermissionSetArn": "arn:aws:sso:::permissionSet/ssoins-1234567891234567/ps-55a5555a5a55ab55",
         "PrincipalId": "12350630-0ae9-479a-97c2-0afc2d5b4eac",
@@ -22,22 +22,22 @@ Object {
       "Type": "AWS::SSO::Assignment",
     },
   },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
                     "1",
                     "2",
                     "3",
                     "4",
                     "5",
                   ],
-                  Object {
+                  {
                     "Ref": "BootstrapVersion",
                   },
                 ],

@@ -1,20 +1,20 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Snapshot 1`] = `
-Object {
-  "Parameters": Object {
-    "BootstrapVersion": Object {
+{
+  "Parameters": {
+    "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
-  "Resources": Object {
-    "PermissionSetpermissionSetAssignmentassignmentBF53D72E": Object {
-      "Properties": Object {
+  "Resources": {
+    "PermissionSetpermissionSetAssignmentassignmentBF53D72E": {
+      "Properties": {
         "InstanceArn": "arn:aws:sso:::instance/ssoins-1234567891234567",
-        "PermissionSetArn": Object {
-          "Fn::GetAtt": Array [
+        "PermissionSetArn": {
+          "Fn::GetAtt": [
             "PermissionSetpermissionSetEB39BD79",
             "PermissionSetArn",
           ],
@@ -26,18 +26,18 @@ Object {
       },
       "Type": "AWS::SSO::Assignment",
     },
-    "PermissionSetpermissionSetEB39BD79": Object {
-      "Properties": Object {
-        "CustomerManagedPolicyReferences": Array [
-          Object {
+    "PermissionSetpermissionSetEB39BD79": {
+      "Properties": {
+        "CustomerManagedPolicyReferences": [
+          {
             "Name": "TestPolicy",
             "Path": "/",
           },
         ],
         "Description": "Test Permission Set",
-        "InlinePolicy": Object {
-          "Statement": Array [
-            Object {
+        "InlinePolicy": {
+          "Statement": [
+            {
               "Action": "rds:*",
               "Effect": "Allow",
               "Resource": "*",
@@ -46,13 +46,13 @@ Object {
           "Version": "2012-10-17",
         },
         "InstanceArn": "arn:aws:sso:::instance/ssoins-1234567891234567",
-        "ManagedPolicies": Array [
-          Object {
-            "Fn::Join": Array [
+        "ManagedPolicies": [
+          {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/AmazonRDSPerformanceInsightsReadOnly",
@@ -61,13 +61,13 @@ Object {
           },
         ],
         "Name": "TestPermissionSet",
-        "PermissionsBoundary": Object {
-          "ManagedPolicyArn": Object {
-            "Fn::Join": Array [
+        "PermissionsBoundary": {
+          "ManagedPolicyArn": {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/AmazonRDSPerformanceInsightsReadOnly",
@@ -81,22 +81,22 @@ Object {
       "Type": "AWS::SSO::PermissionSet",
     },
   },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
                     "1",
                     "2",
                     "3",
                     "4",
                     "5",
                   ],
-                  Object {
+                  {
                     "Ref": "BootstrapVersion",
                   },
                 ],
