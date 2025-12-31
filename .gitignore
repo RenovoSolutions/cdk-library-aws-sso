@@ -35,7 +35,6 @@ junit.xml
 /coverage/
 /dist/changelog.md
 /dist/version.txt
-!/.github/workflows/release.yml
 !/.github/pull_request_template.md
 !/test/
 !/tsconfig.dev.json
@@ -46,4 +45,6 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+!/.github/workflows/release.yml
+.github/workflows/release.yml
 !/.projenrc.ts
