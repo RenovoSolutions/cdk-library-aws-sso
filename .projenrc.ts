@@ -50,4 +50,8 @@ new javascript.UpgradeDependencies(project, {
   workflow: false,
 });
 
+// Ignore the release workflow file so it's not committed to git
+project.gitignore.exclude('!/.github/workflows/release.yml');
+project.gitignore.addPatterns('.github/workflows/release.yml');
+
 project.synth();
